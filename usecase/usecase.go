@@ -3,7 +3,7 @@ package usecase
 import "case-study-checkout/entity"
 
 type ICheckout interface{
-	Checkout(checkout *entity.Checkout) (resp entity.CheckoutTotal,err error)
+	Checkout(checkout *entity.Checkout) (resp entity.Checkout,err error)
 }
 
 type IDiscountRule interface{

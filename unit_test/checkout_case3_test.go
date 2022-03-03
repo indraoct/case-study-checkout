@@ -17,14 +17,14 @@ func TestCase3(t *testing.T){
 
 		checkout.Carts = []entity.Cart{
 			{
-				Sku: "A34",
+				Sku: "A304SD",
 				Qty: 4,
 			},
 		}
 
 		dataCheckout,err := checkout2.NewCheckout(config).Checkout(&checkout)
 		assert.Equal(t,nil,err)
-		assert.Equal(t, 99.98,dataCheckout.Checkout.Total)
+		assert.Equal(t, 394.2,dataCheckout.Total)
 
 	})
 }

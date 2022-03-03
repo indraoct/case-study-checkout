@@ -21,7 +21,7 @@ func TestDataPromoMacbook(t *testing.T){
 			},
 		}
 
-		Promo,isValidPromo,err := promo.NewPromo(config).PromoMacBook(checkout)
+		Promo,isValidPromo,err := promo.NewPromo(config).PromoMacBook(&checkout)
 
 		assert.Equal(t,nil,err)
 		assert.Equal(t,true,isValidPromo)
@@ -43,7 +43,7 @@ func TestDataPromoGoogleHome(t *testing.T){
 			},
 		}
 
-		Promo,isValidPromo,err := promo.NewPromo(config).PromoGoogleHome(checkout)
+		Promo,isValidPromo,err := promo.NewPromo(config).PromoGoogleHome(&checkout)
 
 		assert.Equal(t,nil,err)
 		assert.Equal(t,true,isValidPromo)
@@ -65,7 +65,7 @@ func TestDataPromoAlexa(t *testing.T){
 			},
 		}
 
-		Promo,isValidPromo,err := promo.NewPromo(config).PromoAlexaSpeakers(checkout)
+		Promo,isValidPromo,err := promo.NewPromo(config).PromoAlexaSpeakers(&checkout)
 
 		assert.Equal(t,nil,err)
 		assert.Equal(t,true,isValidPromo)

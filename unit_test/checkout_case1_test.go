@@ -28,7 +28,7 @@ func TestCase1(t *testing.T){
 
 		dataCheckout,err := checkout2.NewCheckout(config).Checkout(&checkout)
 		assert.Equal(t,nil,err)
-		assert.Equal(t, 5399.99,dataCheckout.Checkout.Total)
+		assert.Equal(t, 5399.99,dataCheckout.Total)
 
 	})
 }

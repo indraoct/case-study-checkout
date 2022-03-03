@@ -8,7 +8,7 @@ type IProducts interface {
 }
 
 type IPromo interface {
-	PromoMacBook(checkout entity.Checkout) (promo entity.Promo, isPromoValid bool,err error)
-	PromoGoogleHome(checkout entity.Checkout) (promo entity.Promo, isPromoValid bool,err error)
-	PromoAlexaSpeakers(checkout entity.Checkout) (promo entity.Promo, isPromoValid bool,err error)
+	PromoMacBook(checkout *entity.Checkout) (promo entity.Promo, isPromoValid bool,err error)
+	PromoGoogleHome(checkout *entity.Checkout) (promo entity.Promo, isPromoValid bool,err error)
+	PromoAlexaSpeakers(checkout *entity.Checkout) (promo entity.Promo, isPromoValid bool,err error)
 }

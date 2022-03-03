@@ -17,7 +17,7 @@ func NewPromo(config config.Configuration) repository.IPromo{
 	return &ObjPromo{Config: config}
 }
 
-func (p *ObjPromo) PromoMacBook(checkout entity.Checkout) (promo entity.Promo, isPromoValid bool,err error){
+func (p *ObjPromo) PromoMacBook(checkout *entity.Checkout) (promo entity.Promo, isPromoValid bool,err error){
 	isPromoValid = false
 	promo.MinimumQty = 1
 	promo.Percentage = 0
@@ -49,7 +49,7 @@ func (p *ObjPromo) PromoMacBook(checkout entity.Checkout) (promo entity.Promo, i
 	return promo,isPromoValid, nil
 }
 
-func (p *ObjPromo) PromoGoogleHome(checkout entity.Checkout) (promo entity.Promo, isPromoValid bool,err error){
+func (p *ObjPromo) PromoGoogleHome(checkout *entity.Checkout) (promo entity.Promo, isPromoValid bool,err error){
 	isPromoValid = false
 	promo.Percentage = 0
 	promo.MinimumQty = 2
@@ -78,7 +78,7 @@ func (p *ObjPromo) PromoGoogleHome(checkout entity.Checkout) (promo entity.Promo
 	return promo,isPromoValid, nil
 }
 
-func (p *ObjPromo) PromoAlexaSpeakers(checkout entity.Checkout) (promo entity.Promo, isPromoValid bool,err error){
+func (p *ObjPromo) PromoAlexaSpeakers(checkout *entity.Checkout) (promo entity.Promo, isPromoValid bool,err error){
 
 	isPromoValid = false
 	promo.MinimumQty = 4
