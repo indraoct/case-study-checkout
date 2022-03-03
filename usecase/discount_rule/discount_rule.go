@@ -28,7 +28,6 @@ func (d *ObjDiscountRule) DiscountPrice(checkout *entity.Checkout) (err error){
 			for _, promoSku := range dataPromo.PromoSKU{
 				if cart.Sku == promoSku.Sku{
 					checkout.Total = helper.FloatRound(checkout.Total - promoSku.Discount,2)
-					checkout.Promos = append(checkout.Promos,dataPromo)
 					checkout.Discount += promoSku.Discount
 				}
 			}
@@ -55,7 +54,6 @@ func (d *ObjDiscountRule) DiscountSKUPrice(checkout *entity.Checkout) (err error
 			for _, promoSku := range dataPromo.PromoSKU{
 				if cart.Sku == promoSku.Sku{
 					checkout.Total = helper.FloatRound(checkout.Total - promoSku.Discount,2)
-					checkout.Promos = append(checkout.Promos,dataPromo)
 					checkout.Discount += promoSku.Discount
 				}
 			}
@@ -77,7 +75,6 @@ func (d *ObjDiscountRule) DiscountSKUPercentage(checkout *entity.Checkout) (err 
 			for _, promoSku := range dataPromo.PromoSKU{
 				if cart.Sku == promoSku.Sku{
 					checkout.Total = helper.FloatRound(checkout.Total - promoSku.Discount,2)
-					checkout.Promos = append(checkout.Promos,dataPromo)
 					checkout.Discount += promoSku.Discount
 				}
 			}
