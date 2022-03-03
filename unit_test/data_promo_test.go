@@ -17,7 +17,7 @@ func TestDataPromoMacbook(t *testing.T){
 
 		checkout.Carts = []entity.Cart{
 			{Sku: "43N23P",
-			 Qty: 1,
+			 Qty: 3,
 			},
 		}
 

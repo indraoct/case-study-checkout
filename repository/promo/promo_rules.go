@@ -34,10 +34,12 @@ func (p *ObjPromo) PromoMacBook(checkout entity.Checkout) (promo entity.Promo, i
 		promo.SKU = "43N23P"
 		promo.PromoType = constants.PROMO_TYPE_DISCOUNT_SKU_PRICE
 		productPromo,_ :=products.NewProducts(p.Config).GetProductsBySKU("234234")
+
+		//promo per SKU
 		for i:=0; i < int(qty); i++{
 			var SKU entity.SKU
 			SKU.Sku = "234234"
-			SKU.Discount = helper.FloatRound(promo.Percentage * productPromo[0].Price,2)
+			SKU.Discount = productPromo[0].Price
 			SKU.Percentage = promo.Percentage
 			promo.PromoSKU = append(promo.PromoSKU,SKU)
 		}
@@ -62,6 +64,8 @@ func (p *ObjPromo) PromoGoogleHome(checkout entity.Checkout) (promo entity.Promo
 		promo.SKU = "120P90"
 		promo.PromoType = constants.PROMO_TYPE_DISCOUNT_PRICE
 		productPromo,_ :=products.NewProducts(p.Config).GetProductsBySKU("120P90")
+
+		//promo per SKU
 		var SKU entity.SKU
 		SKU.Sku = "120P90"
 		SKU.Discount = productPromo[0].Price
