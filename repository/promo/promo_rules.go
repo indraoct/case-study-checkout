@@ -4,6 +4,7 @@ import (
 	"case-study-checkout/constants"
 	"case-study-checkout/entity"
 	"case-study-checkout/pkg/config"
+	"case-study-checkout/pkg/helper"
 	"case-study-checkout/repository"
 	"case-study-checkout/repository/products"
 )
@@ -19,6 +20,7 @@ func NewPromo(config config.Configuration) repository.IPromo{
 func (p *ObjPromo) PromoMacBook(checkout entity.Checkout) (promo entity.Promo, isPromoValid bool,err error){
 	isPromoValid = false
 	promo.MinimumQty = 1
+	promo.Percentage = 0
 	var qty int64 = 0
 	for _, cart := range checkout.Carts{
 		if cart.Sku == "43N23P" && cart.Qty >= promo.MinimumQty {
@@ -32,12 +34,14 @@ func (p *ObjPromo) PromoMacBook(checkout entity.Checkout) (promo entity.Promo, i
 		promo.SKU = "43N23P"
 		promo.PromoType = constants.PROMO_TYPE_DISCOUNT_SKU_PRICE
 		productPromo,_ :=products.NewProducts(p.Config).GetProductsBySKU("234234")
-		promo.PromoSKU = []entity.SKU{
-			{
-				Sku: "234234",
-				Discount: productPromo[0].Price*float64(qty),
-			},
+		for i:=0; i < int(qty); i++{
+			var SKU entity.SKU
+			SKU.Sku = "234234"
+			SKU.Discount = helper.FloatRound(promo.Percentage * productPromo[0].Price,2)
+			SKU.Percentage = promo.Percentage
+			promo.PromoSKU = append(promo.PromoSKU,SKU)
 		}
+		promo.Discount = helper.FloatRound(productPromo[0].Price*float64(qty),2)
 	}
 
 	return promo,isPromoValid, nil
@@ -45,6 +49,7 @@ func (p *ObjPromo) PromoMacBook(checkout entity.Checkout) (promo entity.Promo, i
 
 func (p *ObjPromo) PromoGoogleHome(checkout entity.Checkout) (promo entity.Promo, isPromoValid bool,err error){
 	isPromoValid = false
+	promo.Percentage = 0
 	promo.MinimumQty = 2
 	for _, cart := range checkout.Carts{
 		if cart.Sku == "120P90" && cart.Qty >= promo.MinimumQty {
@@ -56,8 +61,13 @@ func (p *ObjPromo) PromoGoogleHome(checkout entity.Checkout) (promo entity.Promo
 	if isPromoValid == true {
 		promo.SKU = "120P90"
 		promo.PromoType = constants.PROMO_TYPE_DISCOUNT_PRICE
-		productPromo,_ :=products.NewProducts(p.Config).GetProductsBySKU("43N23P")
-		promo.DiscountPrice = productPromo[0].Price
+		productPromo,_ :=products.NewProducts(p.Config).GetProductsBySKU("120P90")
+		var SKU entity.SKU
+		SKU.Sku = "120P90"
+		SKU.Discount = productPromo[0].Price
+		SKU.Percentage = promo.Percentage
+		promo.PromoSKU = append(promo.PromoSKU,SKU)
+		promo.Discount = productPromo[0].Price
 
 	}
 
@@ -68,6 +78,7 @@ func (p *ObjPromo) PromoAlexaSpeakers(checkout entity.Checkout) (promo entity.Pr
 
 	isPromoValid = false
 	promo.MinimumQty = 4
+	promo.Percentage = 0.1
 	var qty int64 = 0
 	for _, cart := range checkout.Carts{
 		if cart.Sku == "A304SD" && cart.Qty >= promo.MinimumQty {
@@ -81,12 +92,14 @@ func (p *ObjPromo) PromoAlexaSpeakers(checkout entity.Checkout) (promo entity.Pr
 		promo.SKU = "A304SD"
 		promo.PromoType = constants.PROMO_TYPE_DISCOUNT_SKU_PERCENTAGE
 		productPromo,_ :=products.NewProducts(p.Config).GetProductsBySKU("A304SD")
-		promo.PromoSKU = []entity.SKU{
-			{
-				Sku: "A304SD",
-				Discount: (0.01 * productPromo[0].Price) * float64(qty),
-			},
+		for i:=0; i < int(qty); i++{
+			var SKU entity.SKU
+			SKU.Sku = "A304SD"
+			SKU.Discount = helper.FloatRound(promo.Percentage * productPromo[0].Price,2)
+			SKU.Percentage = promo.Percentage
+			promo.PromoSKU = append(promo.PromoSKU,SKU)
 		}
+		promo.Discount = helper.FloatRound((promo.Percentage * productPromo[0].Price) * float64(qty),2)
 	}
 	return promo,isPromoValid, nil
 }

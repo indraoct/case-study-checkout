@@ -61,7 +61,7 @@ func TestDataPromoAlexa(t *testing.T){
 
 		checkout.Carts = []entity.Cart{
 			{Sku: "A304SD",
-				Qty: 3,
+				Qty: 4,
 			},
 		}
 
