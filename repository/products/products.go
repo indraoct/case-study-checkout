@@ -4,7 +4,6 @@ import (
 	"case-study-checkout/entity"
 	"case-study-checkout/pkg/config"
 	"case-study-checkout/repository"
-	"errors"
 )
 type ObjProduct struct {
 	Config config.Configuration
@@ -59,7 +58,7 @@ func (p *ObjProduct) GetProductsBySKU(sku string) (listProducts []entity.Product
 			listProducts = append(listProducts,prod)
 		}
 	}
-	return listProducts,errors.New("product not found")
+	return listProducts,nil
 }
 
 

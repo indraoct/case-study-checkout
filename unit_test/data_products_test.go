@@ -13,7 +13,7 @@ func TestGetAllProducts(t *testing.T){
 		products,err := products.NewProducts(config).GetAllProducts()
 
 		assert.Equal(t,nil,err)
-		assert.Equal(t, 0, len(products))
+		assert.NotEqual(t, 0, len(products))
 
 	})
 }
@@ -24,7 +24,7 @@ func TestGetProductsBySKU(t *testing.T){
 		products,err := products.NewProducts(config).GetProductsBySKU("234234")
 
 		assert.Equal(t,nil,err)
-		assert.Equal(t, 0, len(products))
+		assert.NotEqual(t, 0, len(products))
 
 	})
 }
