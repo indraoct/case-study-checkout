@@ -9,6 +9,7 @@ type Checkout struct {
 
 type Cart struct {
 	Sku 	string	`json:"sku"`
+	Name 	string	`json:"name"`
 	Qty 	int64	`json:"qty"`
 	Price   float64 `json:"price"`
 }

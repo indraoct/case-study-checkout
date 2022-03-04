@@ -24,6 +24,7 @@ func (c *ObjCheckout) Checkout(checkout *entity.Checkout) (resp entity.Checkout,
 		dataProduct,_ :=products.NewProducts(c.Config).GetProductsBySKU(cart.Sku)
 		cart.Price = helper.FloatRound(float64(cart.Qty)*dataProduct[0].Price,2)
 		checkout.Carts[i].Price = cart.Price
+		checkout.Carts[i].Name = dataProduct[0].Name
 		checkout.SubTotal += cart.Price
 		checkout.Total += cart.Price
 		i++

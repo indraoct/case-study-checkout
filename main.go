@@ -1,6 +1,7 @@
 package main
 
 import (
+	"case-study-checkout/handler/gql"
 	"case-study-checkout/pkg/config"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -47,11 +48,10 @@ func setWebRouter(config config.Configuration) *echo.Echo {
 		return c.String(http.StatusOK, "PONG!")
 	})
 
-	// Register Routes
-	//web.NewRoutes(
-	//	config.RootUrl,
-	//	config,
-	//).RegisterServices(e, config)
+	root.Any("/graphql",func(c echo.Context) error {
+		result := gql.GqlExecuteQuery(c)
+		return c.JSON(http.StatusOK,&result)
+	})
 
 	return e
 }
