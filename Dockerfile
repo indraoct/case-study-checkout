@@ -4,7 +4,6 @@ ARG VERSION=dev
 
 WORKDIR /go/src/app
 COPY . .
-RUN go test
 RUN go build -o main -ldflags=-X=main.version=${VERSION} main.go
 
 FROM debian:buster-slim
