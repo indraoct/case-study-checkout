@@ -1,4 +1,4 @@
-package unit_test
+package main_test
 
 import (
 	"case-study-checkout/entity"
@@ -8,8 +8,8 @@ import (
 	"testing"
 )
 
-func TestCase2(t *testing.T){
-	t.Run("positive case: Buy 3 Google Homes for the price of 2", func(t *testing.T) {
+func TestCase3(t *testing.T){
+	t.Run("positive case: Buying more than 3 Alexa Speakers will have a 10% discount on all Alexa speakers", func(t *testing.T) {
 		var (
 			checkout entity.Checkout
 		)
@@ -17,14 +17,14 @@ func TestCase2(t *testing.T){
 
 		checkout.Carts = []entity.Cart{
 			{
-				Sku: "120P90",
-				Qty: 3,
+				Sku: "A304SD",
+				Qty: 4,
 			},
 		}
 
 		dataCheckout,err := checkout2.NewCheckout(config).Checkout(&checkout)
 		assert.Equal(t,nil,err)
-		assert.Equal(t, 99.98,dataCheckout.Total)
+		assert.Equal(t, 394.2,dataCheckout.Total)
 
 	})
 }

@@ -1,4 +1,4 @@
-package unit_test
+package main_test
 
 import (
 	"case-study-checkout/entity"
